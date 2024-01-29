@@ -7,7 +7,7 @@ import csv
 import tabula
 import re
 
-from datetime import date, datetime
+from datetime import datetime
 
 """Rentability and cost of the electro scooter delivery. The consumption cost
 ecuation is consumption = capacity x volt, divided under 1 millon to convert to

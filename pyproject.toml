@@ -1,20 +1,27 @@
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
-[project]
-name = "bolt_rider_tools"
-version = "0.0.1"
-authors = [
-	{ name="Egoitz", email="colmillovasco@example.com"},
-]
-description = "A Bolt.cz riders package"
+[tool.poetry]
+name = "bolt rider tools"
+version = "0.1.1"
+description = "little exercise with requests and pdf"
+authors = ["EgoitzAB <egoitzabilleira@protonmail.com>"]
+license = "MIT"
 readme = "README.md"
-license = { file="LICENSE" }
-requires-python = ">=3.7"
-classifiers = [
-	"Programming Language :: Python :: 3",
-	"License :: OSI Approved :: MIT License",
-	"Operating System :: OS Independent",
-]
-[project.urls]
+
+[tool.poetry.dependencies]
+python = "^3"
+certifi==2023.11.17
+charset-normalizer==3.3.2
+idna==3.6
+numpy==1.26.3
+pandas==2.2.0
+python-dateutil==2.8.2
+pytz==2023.4
+requests==2.31.0
+six==1.16.0
+tabula==1.0.5
+tzdata==2023.4
+urllib3==2.1.0
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
