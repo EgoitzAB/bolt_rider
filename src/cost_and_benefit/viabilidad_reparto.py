@@ -19,17 +19,14 @@ working in csv and pdf like exercise."""
 def download_get_pdf():#make a request and get the pdf
     download = requests.get(url)
     return download
-#save the pdf and return the name to read later
-def test_download_get_pdf():
-    expected = 200
-    actual = download_get_pdf()
-    assert expected == actual.status_code
 
+#save the pdf and return the name to read later
 def save_pdf(pdf):
     with pdf as r:
         with open("electricity.pdf", "wb") as f:
             f.write(r.content)
     return f.name
+
 #reading the pdf file and extracting the actual price with pandas
 def get_tariff_price(file):
     table = tabula.read_pdf(file, pages="all")
@@ -41,11 +38,7 @@ def format_tariff_price(actual_price):
     format_price = re.sub('[() ]', '', actual_price).replace(',', '.')
     tariff_price = float(format_price)
     return tariff_price
-#test the format function
-def test_format_tariff_price():
-    expected = 100.1
-    actual = format_tariff_price('(1 0 0,1)')
-    assert expected == actual
+
 #save the tariff_price in one csvfile to work later
 def save_prices(price):
     currentMonth = datetime.now().strftime("%B") #get month
@@ -53,6 +46,7 @@ def save_prices(price):
     with open ('electricity_prices.csv', "a", newline = '') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(current_prices)
+
 #function who calculate the load cost and return the price
 def get_today_price():
     with open('electricity_prices.csv', "r") as file:
@@ -60,16 +54,19 @@ def get_today_price():
         datos = data.split(',')[-1]#get only the price
     return datos
 #make operations to calculate the load cost
+
 def get_load_cost(datos):
     electricity_price = float(datos) / 1000 #format the price
     load_cost = electricity_price * load_capacity * load_time
     return load_cost
+
 #save the cost of load and return in a string formated
 def save_cost_of_load(load_cost):
     with open("benefit.csv", "w+", encoding='UTF8') as f:
         writer = csv.writer(f, delimiter=' ')
         writer.writerow("The load cost is:{}".format(str(load_cost)))
         return ("The load cost is: {}".format(str(load_cost)))
+
 #function who calculate the total profits of the day
 def profit(load_cost, profit):
     benefit = profit - load_cost # sustract the cost and return benefit

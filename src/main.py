@@ -1,6 +1,6 @@
 #!usr/bin/python3
 import argparse
-from cost_and_benefit import viabilidad_reparto as v
+from src.cost_and_benefit import viabilidad_reparto as v
 from datetime import date
 
 
@@ -19,6 +19,7 @@ def main():
         today_price = v.get_today_price()
         load_cost = v.get_load_cost(today_price)
         print(load_cost)
+        return load_cost
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser()
